@@ -90,3 +90,13 @@ const itemH2 = document.querySelector(".item-list h2")
 itemH2.style.color = "purple"
 
 
+//* ===========================================================
+//*                      QUERYSELECTORALL()
+//* ===========================================================
+
+const lists = document.querySelectorAll("ul li")
+console.log(lists) //? node list
+
+lists.forEach((li) => console.log(li.innerText))
+
+console.log(document.querySelector("section ul li:nth child(3)"))
