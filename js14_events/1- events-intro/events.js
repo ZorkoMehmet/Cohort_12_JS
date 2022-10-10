@@ -21,7 +21,7 @@ h1.addEventListener("click", () => {
   alert("H1 Pressed");
 });
 
-//* EXAMPLE- (addEventListener())
+//* EXAMPLE-2 (addEventListener())
 //* ===========================================================
 
 document.getElementById("btn").addEventListener("click", function () {
@@ -37,3 +37,28 @@ document.getElementById("btn").addEventListener("click", function () {
 
     input.value = "" // deger girildikten sonra icerigi sifirlamak icin
 });
+
+//* EXAMPLE-3 MacOS Dock 
+//* ===========================================================
+
+const list = document.querySelectorAll(".list")
+list.forEach((li)=> {
+    li.style.transition = "all 0.8s"
+    li.style.lineHeight = "2rem"
+
+    li.onmouseover = () => {
+        li.style.fontSize = "2rem"
+        li.style.transform = "translateX(10px)"
+    }
+    li.onmouseout = () => {
+        li.style.fontSize = "1rem"
+        li.style.transform = "translateX(-10px)"
+    }
+})
+
+//? Sayfa yeniden yuklendiginde dogrudan input box'a focuslanmak icin:
+//* EXAMPLE-4 
+//* ===========================================================
+window.onload = function () {
+    document.querySelector("#input").focus()
+}
