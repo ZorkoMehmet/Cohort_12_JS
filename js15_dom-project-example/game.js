@@ -11,10 +11,12 @@ const body = document.querySelector("body");
 
 //? variables
 let score = 10;
-// let topScore = 0;
 
-let topScore = localStorage.getItem("topScore") || 0; //? bu islem localstorege'da topScore isminde bir degisken olusturur. devaminda || ile yaptigimiz ise short circuit yontemi. yani olusturulan degiskenin icinde herhangi bir deger yok ise 0 olarak oku demektir.
+let topScore = localStorage.getItem("topScore") || 0;
+//? bu islem localstorege'da topScore isminde bir degisken olusturur. devaminda || ile yaptigimiz ise short circuit yontemi. yani olusturulan degiskenin icinde herhangi bir deger yok ise 0 olarak oku demektir.
 console.log(topScore);
+
+document.querySelector(".top-score").textContent = topScore
 
 //* When the user presses the ChechBtn
 //! you won ==> background = green ==> if score > topScore topScore == score ==> secret number will be visiable
@@ -26,25 +28,26 @@ document.querySelector(".check-btn").addEventListener("click", () => {
     //? if randomNumber == input.value
   } else if (randomNumber === guessInput) {
     msg.innerText = "Congrats You Win!";
-    document.querySelector("check-btn").disabled = true;
     document.querySelector("body").style.backgroundColor = "green";
     document.querySelector(".secret-number").innerText = randomNumber;
+    document.querySelector(".check-btn").disabled = true;
 
     if (score > topScore) {
     //   topScore = score;
-      localStorage.getItem("topScore", score)
-      document.querySelector(".top-score").innerText = score;
+    localStorage.setItem("topScore", score)
+    document.querySelector(".top-score").textContent = score;
     }
+
   }
   //? if randomNumber !== input.value look at the score ==>
   else if (randomNumber < guessInput) {
     score -= 1;
     document.querySelector(".score").innerText = score;
-    if (score <= 0) {
+    if (score > 0) {
       msg.innerText = "Decrease! ⏬⏬";
     } else {
       msg.innerText = "Sorry, You Lost! Play Again?";
-      document.querySelector("check-btn").disabled = true;
+      document.querySelector(".check-btn").disabled = true;
     }
   } else if (randomNumber > guessInput) {
     if (score > 0) {
@@ -85,4 +88,3 @@ document.querySelector(".again-btn").addEventListener("click", () => {
 // console.log(typeof readObj)
 // console.log(readOBJ)
 // console.log(typeof readOBJ)
-// localStorage.removeItem("OBJ")
