@@ -16,7 +16,7 @@ let topScore = localStorage.getItem("topScore") || 0;
 //? bu islem localstorege'da topScore isminde bir degisken olusturur. devaminda || ile yaptigimiz ise short circuit yontemi. yani olusturulan degiskenin icinde herhangi bir deger yok ise 0 olarak oku demektir.
 console.log(topScore);
 
-document.querySelector(".top-score").textContent = topScore
+document.querySelector(".top-score").textContent = topScore;
 
 //* When the user presses the ChechBtn
 //! you won ==> background = green ==> if score > topScore topScore == score ==> secret number will be visiable
@@ -33,11 +33,10 @@ document.querySelector(".check-btn").addEventListener("click", () => {
     document.querySelector(".check-btn").disabled = true;
 
     if (score > topScore) {
-    //   topScore = score;
-    localStorage.setItem("topScore", score)
-    document.querySelector(".top-score").textContent = score;
+      //   topScore = score;
+      localStorage.setItem("topScore", score);
+      document.querySelector(".top-score").textContent = score;
     }
-
   }
   //? if randomNumber !== input.value look at the score ==>
   else if (randomNumber < guessInput) {
@@ -76,6 +75,12 @@ document.querySelector(".again-btn").addEventListener("click", () => {
   document.querySelector("body").classList.remove(".bg-success", ".bg-danger");
   document.querySelector(".guess-input").value = "";
   document.querySelector(".msg").innerText = "Starting..";
+});
+
+document.querySelector(".guess-input").addEventListener("keydown", (e) => {
+  if(e.code === "Enter"){
+    document.querySelector(".check-btn").click()
+  }
 });
 
 //! LOCALSTORAGE-SESSIONSTORAGE
