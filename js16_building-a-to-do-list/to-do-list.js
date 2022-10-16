@@ -1,4 +1,4 @@
-const data = document.querySelector("#input")
+let data = document.querySelector("#input")
 const addBtn = document.getElementById("add-btn")
 const newUl = document.getElementById("ul")
 const total = document.getElementById("total")
@@ -7,9 +7,12 @@ const completed = document.getElementById("completed")
 total.textContent += 0
 completed.textContent += 0
 
+console.log(data.value)
 
+document.getElementById("add-btn").addEventListener("click", () => {
+    newUl.innerHTML = <li class="li" value="data.value"></li>
 
-
+})
 
 
 
