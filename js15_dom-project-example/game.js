@@ -46,12 +46,13 @@ document.querySelector(".check-btn").addEventListener("click", () => {
       msg.innerText = "Decrease! ⏬⏬";
     } else {
       msg.innerText = "Sorry, You Lost! Play Again?";
+      document.querySelector("body").style.backgroundColor = "red";
       document.querySelector(".check-btn").disabled = true;
     }
   } else if (randomNumber > guessInput) {
-    if (score > 0) {
-      score -= 1;
+    score -= 1;
       document.querySelector(".score").innerText = score;
+    if (score > 0) {
       msg.innerText = "Increase! ⏫⏫";
     } else {
       msg.innerText = "Sorry, You Lost! Play Again?";
@@ -69,6 +70,8 @@ document.querySelector(".again-btn").addEventListener("click", () => {
   score = 10;
   randomNumber = Math.round(Math.random() * 100);
   console.log(randomNumber);
+  document.querySelector("body").style.backgroundColor = "#2d3436"
+
   document.querySelector(".score").innerText = score;
   document.querySelector(".check-btn").disabled = false;
   document.querySelector(".secret-number").innerText = "?";
