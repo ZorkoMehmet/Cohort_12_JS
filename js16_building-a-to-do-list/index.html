@@ -8,11 +8,19 @@
     <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <script src="to-do-list.js"></script>
-    <div class="div">
+    <section class="div">
         <h1>TO-DO LIST</h1>
-        <input id="input" class="div"></input>
-        <button id="add-btn" class="div">ADD</button>
-    </div>
+        <input id="input" placeholder="Write To-Do"></input>
+        <button id="add-btn" type="button">ADD</button>
+        <p id="total" value="0">Total: </p>
+        <p id="completed">Completed: </p>
+    </section>
+
+    <section>
+        <ul id="ul"></ul>
+    </section>
+    <script src="to-do-list.js"></script>
+
 </body>
 </html>
+
