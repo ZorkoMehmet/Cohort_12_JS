@@ -24,11 +24,11 @@ createListElement = (newTodo) => {
   li.setAttribute("id", newTodo.id); // ALT: li.id = newTodo.id
   console.log(li);
 
+  newTodo.completed ? li.classList.add("completed") : "";
+
   const okIcon = document.createElement("i");
   okIcon.setAttribute("class", "fas fa-check");
   li.appendChild(okIcon);
-
-  todoUl.appendChild(li);
 
   const p = document.createElement("p");
   const pTextNode = document.createTextNode(newTodo.text);
@@ -38,7 +38,16 @@ createListElement = (newTodo) => {
   const deleteIcon = document.createElement("i");
   deleteIcon.setAttribute("class", "fas fa-trash");
   li.appendChild(deleteIcon);
+
+  todoUl.appendChild(li);
+
 };
+
+todoUl.addEventListener("click", (e) => {
+    if(e.target.classList.contains("fa-trash")){
+        e.target.parentElement.remove()
+    }
+})
 
 todoInput.addEventListener("keydown", (e) => {
   if (e.code === "Enter") {
@@ -47,5 +56,5 @@ todoInput.addEventListener("keydown", (e) => {
 });
 
 window.onload = function () {
-    todoInput.focus()
-}
+  todoInput.focus();
+};
