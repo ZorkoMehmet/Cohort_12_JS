@@ -5,6 +5,8 @@ const todoUl = document.getElementById("todo-ul");
 const total = document.getElementById("total");
 const completed = document.getElementById("completed");
 
+
+
 addBtn.addEventListener("click", () => {
   if (todoInput.value.trim() === "") {
     alert("Please enter what you wish to-do!");
@@ -15,6 +17,8 @@ addBtn.addEventListener("click", () => {
       text: todoInput.value,
     };
     createListElement(newTodo);
+    todos.push(newTodo)
+    localStorage.setItem("TODOS", JSON.stringify(todos))
     todoInput.value = "";
   }
 });
@@ -42,6 +46,17 @@ createListElement = (newTodo) => {
   todoUl.appendChild(li);
 
 };
+
+
+let todos = JSON.parse(localStorage.getItem("TODOS")) || []
+
+const renderSavedTodos = () => {
+    todos.forEach((todo) => {
+        createListElement(todo)
+
+    });
+}
+renderSavedTodos()
 
 todoUl.addEventListener("click", (e) => {
     if(e.target.classList.contains("fa-trash")){
