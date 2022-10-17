@@ -5,6 +5,7 @@ const todoUl = document.getElementById("todo-ul");
 const total = document.getElementById("total");
 const completed = document.getElementById("completed");
 
+let todos = JSON.parse(localStorage.getItem("TODOS")) || []
 
 
 addBtn.addEventListener("click", () => {
@@ -48,7 +49,6 @@ createListElement = (newTodo) => {
 };
 
 
-let todos = JSON.parse(localStorage.getItem("TODOS")) || []
 
 const renderSavedTodos = () => {
     todos.forEach((todo) => {
@@ -59,12 +59,19 @@ const renderSavedTodos = () => {
 renderSavedTodos()
 
 todoUl.addEventListener("click", (e) => {
+
+    const id = e.target.parentElement.getAttribute("id")
+
     if(e.target.classList.contains("fa-trash")){
         e.target.parentElement.remove()
+        todos = todos.filter((todo) => todo.id != Number(id))
+        localStorage.setItem("TODOS", JSON.stringify(todos))
     }
+
     if(e.target.classList.contains("fa-check")){
         e.target.parentElement.classList.toggle("checked")
     }
+
 })
 
 todoInput.addEventListener("keydown", (e) => {
