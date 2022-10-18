@@ -119,7 +119,7 @@ main form {
   position: relative;
 }
 
-#product-painel {
+#product-panel {
   position: absolute;
   width: 100%;
   border-radius: 10px;
@@ -129,7 +129,7 @@ main form {
   flex-wrap: wrap;
 }
 
-#product-painel .product {
+#product-panel .product {
   position: relative;
   width: 100%;
   display: flex;
@@ -361,7 +361,7 @@ i {
     position: relative;
   }
 
-  #product-painel {
+  #product-panel {
     position: absolute;
     width: 100%;
     border-radius: 10px;
@@ -371,7 +371,7 @@ i {
     flex-wrap: wrap;
   }
 
-  #product-painel .product {
+  #product-panel .product {
     position: relative;
     width: 100%;
     display: flex;
@@ -490,7 +490,7 @@ i {
     grid-area: top;
   }
 
-  #product-painel {
+  #product-panel {
     padding: 0;
   }
 
