@@ -11,3 +11,8 @@ window.addEventListener("load", () => {
   //  sessionStorage.setItem("shippingPrice", shippingPrice);
   //  sessionStorage.setItem("shippingFreePrice", shippingFreePrice);
 });
+const productsDiv = document.querySelector(".products");
+productsDiv.addEventListener("click", (event) => {
+  if (event.target.className == "fa-solid fa-minus") {
+
+  }
