@@ -31,10 +31,10 @@ productsDiv.addEventListener("click", (event) => {
 });
 
 const calculateProductTotal = (btn) => {
-  const productsInfoDiv = btn.parentElement.parentElement
+  const productsInfoDiv = btn.parentElement;
 
-  const productPrice = productsInfoDiv.querySelector("product-price strong").innerText
-  console.log(productPrice);
+  // const productPrice = productsInfoDiv.querySelector(".product-price strong").innerText
+  // console.log(productPrice);
 };
 calculateProductTotal();
 const calculateSubTotal = () => {};
