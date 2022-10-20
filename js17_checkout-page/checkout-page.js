@@ -17,27 +17,28 @@ productsDiv.addEventListener("click", (event) => {
     //! search for the previous sibling version of this
     event.target.parentElement.querySelector(".quantity").innerText++;
     calculateProductPrice(event.target)
-    calculateTotalPrice()
+    calculateCartPrice()
 
   }
   if (event.target.classList.contains("fa-minus")) {
     if (event.target.parentElement.querySelector(".quantity").innerText > 1) {
       event.target.parentElement.querySelector(".quantity").innerText--;
       calculateProductPrice(event.target)
-      calculateTotalPrice()
+      calculateCartPrice()
     } else {
       confirm("Do you want to remove this item from your checkout list?"),
         event.target.parentElement.parentElement.parentElement.remove();
-        calculateTotalPrice(event.target)
+        calculateCartPrice(event.target)
 
     }
   }
   if (event.target.className == "remove-product") {
     event.target.parentElement.parentElement.parentElement.remove();
-    calculateTotalPrice()
+    calculateCartPrice()
 
   }
 });
+
 
 const calculateProductPrice = (btn) => {
   const productInfoDiv = btn.parentElement.parentElement;
@@ -49,17 +50,43 @@ const calculateProductPrice = (btn) => {
   //alert(quantity);
 };
 
-const calculateTotalPrice = () => {
-  const allPrices = document.querySelectorAll(".product-line-price")
-  let beginningAmount = 0
-  const subTotal = allPrices.forEach((div) => {beginningAmount += parseFloat(div.innerText)})
-  document.querySelector("#cart-subtotal").lastElementChild.innerText = subTotal
+const calculateCartPrice = () => {
+  const productsTotalPricesDivs = document.querySelectorAll(
+    ".product-line-price"
+  );
+  //foreach ==> NodeList, Array
+  //const productsTotalPricesDivs = [...document.getElementsByClassName("product-line-price")];
 
-  }
-  calculateTotalPrice()
-  
-  
-window.addEventListener("load", () => {
-  calculateTotalPrice()
+  // let subtotal = 0;
+  // productsTotalPricesDivs.forEach((div) => {
+  //   subtotal += parseFloat(div.innerText);
+  // });
 
-})
+  //! alternatif olarak reduce metodu da kullanilabilir.
+  // const subtotal = [...productsTotalPricesDivs].reduce(
+  //   (acc, price) => acc + Number(price.innerText),
+  //   0
+  // );
+  //console.log(subtotal);
+  const taxPrice = subtotal * localStorage.getItem("taxRate");
+
+  const shippingPrice = parseFloat(
+    subtotal > 0 && subtotal < localStorage.getItem("shippingFreePrice")
+      ? localStorage.getItem("shippingPrice")
+      : 0
+  );
+
+  console.log(shippingPrice);
+
+  document.querySelector("#cart-subtotal").lastElementChild.innerText =
+    subtotal.toFixed(2);
+  document.querySelector("#cart-tax p:nth-child(2)").innerText =
+    taxPrice.toFixed(2);
+  document.querySelector("#cart-shipping").children[1].innerText =
+    shippingPrice.toFixed(2);
+  document.querySelector("#cart-total").lastElementChild.innerText = (
+    subtotal +
+    taxPrice +
+    shippingPrice
+  ).toFixed(2);
+};
