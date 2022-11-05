@@ -39,5 +39,16 @@ const getNews = async function () {
   }
 };
 
+const renderNews = (news) => {
+  const newsList = document.getElementById("news-list");
+  if (isError) {
+    newsList.innerHTML += `
+      <h2>News Can not be fetched</h2>
+      <img src="./img/404.png" alt="" />
+    `;
+    return;
+  }
+
+};
 
 window.addEventListener("load", getNews);
